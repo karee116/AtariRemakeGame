@@ -12,8 +12,10 @@ public class CameraFollow : MonoBehaviour {
 		offset = transform.position - player.position;
 	}
 
-	void FixedUpdate ()
+	void Update ()
 	{
-
+		Vector3 target = transform.position + offset;
+		transform.position = Vector3.Lerp (transform.position, target, 0);
+	}
 
 }
