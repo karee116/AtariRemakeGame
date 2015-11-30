@@ -3,19 +3,17 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
 
-	[SerializeField] Transform player;
-
-	Vector3 offset;
+	Transform player; // reference to the player
 
 	void Start ()
     {
-		offset = transform.position - player.position;
+		player = GameObject.FindGameObjectWithTag ("Player").transform;
 	}
 
 	void Update ()
 	{
-		Vector3 target = transform.position + offset;
-		transform.position = Vector3.Lerp (transform.position, target, 0);
+		Vector3 target = new Vector3 (player.position.x, player.position.y, transform.position.z);
+		transform.position = Vector3.Lerp (transform.position, target, 5);
 	}
 
 }
