@@ -3,31 +3,29 @@ using System.Collections;
 
 public class MatchControl : MonoBehaviour {
 	
-	public bool isLit;
+	// public bool isLit;
 	Animator m_anim;
 
 	void Awake()
 	{
 		m_anim = GetComponent<Animator> ();
-		isLit = false;
+		// isLit = false;
 	}
 
-	void Lit ()
+	void Update ()
 	{
 		if (Input.GetKeyDown (KeyCode.LeftControl) || Input.GetKeyDown (KeyCode.RightControl)) {
-			isLit = true;
-			m_anim.SetBool ("MatchLit", isLit);
-			StartCoroutine (Timer (15));
-			// return;
+			m_anim.SetBool("Light", true);
 		}
-
-//		 isLit = false;
-//		 m_anim.SetBool ("MatchLit", isLit);
+		StartCoroutine(Timer (10));
+		StopCoroutine (Timer (10));
 	}
 	
+	// this seems to stick on the bool being false so find a way to fix it later please
 	IEnumerator Timer (int time)
 	{
 		yield return new WaitForSeconds (time);
+		m_anim.SetBool("Light", false);
 	}
 
 }
