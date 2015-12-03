@@ -9,11 +9,13 @@ public class PlayerMovement : MonoBehaviour {
 
 	Vector3 m_Movement;
 	Rigidbody2D m_PlayerRigidbody;
-	GameObject stairs;
+	GameObject[] floor;
+	BoxCollider2D ground;
 	
 	void Awake ()
 	{
 		m_PlayerRigidbody = GetComponent<Rigidbody2D> ();
+		floor = GameObject.FindGameObjectsWithTag("Floor");
 	}
 
 	void Update ()
@@ -29,6 +31,23 @@ public class PlayerMovement : MonoBehaviour {
 			v = Input.GetAxisRaw ("Vertical");
 			m_PlayerRigidbody.gravityScale = 0f;	
 		}
+		
+		RaycastHit2D floorHit = Physics2D.Raycast(transform.position, Vector2.up, 5f);
+		
+		foreach (var level in floor) {
+			ground = level.GetComponent<BoxCollider2D>();
+			
+			print ("Floors recognized");
+			
+			// need help here
+			if (floorHit.collider == ground)
+			{
+				ground.enabled = false;
+				print ("Raycast fired");
+			}
+		}
+		
+		
 	}
 	
 	void OnTriggerExit2D(Collider2D other)

@@ -19,7 +19,6 @@ public class MatchControl : MonoBehaviour {
 		if ((Input.GetKeyDown (KeyCode.LeftControl) || Input.GetKeyDown (KeyCode.RightControl)) && m_anim.GetBool("Light") != true) {
 			StartCoroutine(Timer (5));
 			use += 1;
-			print (use);
 		}
 
 	}
