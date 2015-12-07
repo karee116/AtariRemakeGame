@@ -9,46 +9,19 @@ public class PlayerMovement : MonoBehaviour {
 
 	Vector3 m_Movement;
 	Rigidbody2D m_PlayerRigidbody;
-	// GameObject[] floor;
-	BoxCollider2D ground;
-	LayerMask floor; 
-	RaycastHit2D floorHitUp, floorHitDown;
+	GameObject[] floor;
 	
 	
 	void Awake ()
 	{
 		m_PlayerRigidbody = GetComponent<Rigidbody2D> ();
-		floor = LayerMask.GetMask("Floor");
+		floor = GameObject.FindGameObjectsWithTag("Floor");
 	}
-
 	void Update ()
 	{
 		h = Input.GetAxisRaw ("Horizontal");
 		Move (h, v);
 	}
-
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		if (other.gameObject.tag == "Stairs") 
-		{
-//			floorHitUp = Physics2D.Raycast(transform.position, Vector2.up, 50f, floor.value);
-//			floorHitDown = Physics2D.Raycast (transform.position, Vector2.down, 50f, floor.value);
-
-			if(Physics2D.Raycast(transform.position, Vector2.up, 100f, floor))
-			{
-				print("asdfadf");
-			}
-			
-			//print (floorHitUp.collider.name);
-
-		}
-	}
-	
-//	void ResetColliders ()
-//	{
-//		floorHitUp.collider.enabled = !floorHitUp.collider.enabled;
-//		floorHitDown.collider.enabled = !floorHitDown.collider.enabled;
-//	}
 
 	void OnTriggerStay2D(Collider2D other)
 	{
@@ -56,6 +29,10 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			v = Input.GetAxisRaw ("Vertical");
 			m_PlayerRigidbody.gravityScale = 0f;	
+			foreach (var level in floor) {
+				level.GetComponent<BoxCollider2D>().enabled = false;
+			}
+			
 		}
 	}
 	
@@ -65,6 +42,9 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			v = 0;
 			m_PlayerRigidbody.gravityScale = 9.8f;		
+			foreach (var level in floor) {
+				level.GetComponent<BoxCollider2D>().enabled = true;
+			}
 		}
 	}
 
