@@ -4,20 +4,22 @@ using System.Collections;
 
 public class ItemToScreen : MonoBehaviour {
 
-	Image itemInUse;
+	public Sprite itemInUse;
 	Text matchUse;
-	MatchControl litCount;
-	ItemToPlayer item;
+		
+	public static int use
+	{get; set;}
 	
 	void Awake()
 	{
-		itemInUse = GetComponent<Image>();
+//		itemInUse = GetComponent<Image>().sprite;
 		matchUse = GetComponentInChildren<Text>();
+		use = 0;
 	}
 	
 	void Udpate ()
 	{
-		matchUse.text = " x " + litCount.use;
-		itemInUse.sprite = item.spriteInUse;
+		matchUse.text = " Apples" + use;
+		itemInUse = ItemToPlayer.spriteInUse;
 	}
 }

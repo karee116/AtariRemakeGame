@@ -3,13 +3,16 @@ using System.Collections;
 
 public class ItemToPlayer : MonoBehaviour {
 
-	public Sprite spriteInUse;
+	public static Sprite spriteInUse;
 	public GameObject objectInUse;
 	
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		objectInUse = other.gameObject;
-		spriteInUse = objectInUse.GetComponent<Sprite>();
-		Destroy(other.gameObject);
+		if (other.gameObject == GameObject.FindGameObjectWithTag("Item"))
+		{
+			objectInUse = other.gameObject;
+			spriteInUse = objectInUse.GetComponent<Sprite>();
+			other.gameObject.SetActive(false);
+		}
 	}
 }
