@@ -16,12 +16,11 @@ public class MatchControl : MonoBehaviour {
 	{
 		if ((Input.GetKeyDown (KeyCode.LeftControl) || Input.GetKeyDown (KeyCode.RightControl)) && m_anim.GetBool("Light") != true) {
 			StartCoroutine(Timer (5));
-			ItemToScreen.use += 1;
+			ScoreControl.use += 1;
+			print (ScoreControl.use);
 		}
-
 	}
 	
-	// this seems to stick on the bool being false so find a way to fix it later please
 	IEnumerator Timer (int time)
 	{
 		m_anim.SetBool("Light", true);
