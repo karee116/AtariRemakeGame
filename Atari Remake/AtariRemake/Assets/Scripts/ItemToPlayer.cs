@@ -4,8 +4,10 @@ using System.Collections;
 
 public class ItemToPlayer : MonoBehaviour {
 
+	
+
 //	public static Sprite spriteInUse;
-//	GameObject itemInUse;
+	GameObject inventory;
 	// public GameObject objectInUse;
 	
 	void Awake ()
@@ -20,17 +22,32 @@ public class ItemToPlayer : MonoBehaviour {
 			switch (other.gameObject.name) {
 			
 			case "Key":
-			break;
+				inventory = GameObject.Find("Key");
+//				inventory.GetComponent<SpriteRenderer>().enabled = false;
+//				inventory.GetComponent<Collider2D>().enabled = false;
+				break;
 			case "UrnPiece_1":
-			break;
+				inventory = GameObject.Find("UrnPiece_1");
+//				inventory.GetComponent<SpriteRenderer>().enabled = false;
+//				inventory.GetComponent<Collider2D>().enabled = false;
+				break;
 			case "UrnPiece_2":
-			break;
+				inventory = GameObject.Find("UrnPiece_2");
+//				inventory.GetComponent<SpriteRenderer>().enabled = false;
+//				inventory.GetComponent<Collider2D>().enabled = false;
+				break;
 			case "UrnPiece_3":
-			break;
+				inventory = GameObject.Find("UrnPiece_3");
+//				inventory.GetComponent<SpriteRenderer>().enabled = false;
+//				inventory.GetComponent<Collider2D>().enabled = false;
+				break;
 			case "Gem":
-			break;
+				inventory = GameObject.Find("Gem");
+//				inventory.GetComponent<SpriteRenderer>().enabled = false;
+//				inventory.GetComponent<Collider2D>().enabled = false;
+				break;
 			default:
-			break;
+				break;
 			}
 //			spriteInUse = other.gameObject.GetComponent<SpriteRenderer>().sprite;
 //			spriteInUse = itemInUse.GetComponent<Sprite>();
@@ -38,5 +55,8 @@ public class ItemToPlayer : MonoBehaviour {
 //			other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
 			// other.gameObject.SetActive(false);
 		}
+		
+		
+		
 	}
 }

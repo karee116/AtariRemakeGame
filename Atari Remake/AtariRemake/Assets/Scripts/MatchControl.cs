@@ -5,12 +5,14 @@ public class MatchControl : MonoBehaviour {
 	
 	// public bool isLit;
 	CircleCollider2D m_range;
+	SpriteRenderer m_Light;
 	
 	Animator otherAnim;
 
 	void Awake()
 	{
 		m_range = GetComponent<CircleCollider2D>();
+		m_Light = GetComponent<SpriteRenderer>();
 		// isLit = false;
 	}
 
@@ -36,16 +38,21 @@ public class MatchControl : MonoBehaviour {
 	
 	void OnTriggerExit2D (Collider2D other)
 	{
-		otherAnim = other.gameObject.GetComponent<Animator>();
-		otherAnim.SetBool("Appear", false);
-		otherAnim.SetBool("Disappear", true);
+		if (other.gameObject.tag == "Item")
+		{
+			otherAnim = other.gameObject.GetComponent<Animator>();
+			otherAnim.SetBool("Appear", false);
+			otherAnim.SetBool("Disappear", true);
+		}
 	}
 	
 	IEnumerator Timer (int time)
 	{
 		m_range.enabled = true;
+		m_Light.enabled = true;
 		yield return new WaitForSeconds (time);
 		m_range.enabled = false;
+		m_Light.enabled = false;
 		otherAnim.SetBool("Disappear", true);
 		otherAnim.SetBool("Appear", false);
 	}
