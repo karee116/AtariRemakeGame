@@ -9,6 +9,11 @@ public class EnemyControl : MonoBehaviour {
 	int m_range;
 	int m_enemyCount;
 	
+	void Start()
+	{
+		InvokeRepeating("Spawn", 10, 20);
+	}
+	
 	void Spawn ()
 	{
 		switch (enemy.name) {
@@ -32,8 +37,14 @@ public class EnemyControl : MonoBehaviour {
 		{
 			Instantiate(enemy, m_SpawnPoints[spot].position, m_SpawnPoints[spot].rotation);
 			m_enemyCount += 1;
+			StartCoroutine(Death (enemy, 9));
 		}	
 	}
 	
+	IEnumerator Death (GameObject enemy, int time)
+	{
+		yield return new WaitForSeconds(time);
+//		Destroy(enemy);
+	}
 	
 }
