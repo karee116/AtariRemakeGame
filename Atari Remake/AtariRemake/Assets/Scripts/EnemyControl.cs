@@ -37,13 +37,14 @@ public class EnemyControl : MonoBehaviour {
 		{
 			Instantiate(enemy, m_SpawnPoints[spot].position, m_SpawnPoints[spot].rotation);
 			m_enemyCount += 1;
-			StartCoroutine(Death (enemy, 9));
+			StartCoroutine(Death (5));
 		}	
 	}
 	
-	IEnumerator Death (GameObject enemy, int time)
+	IEnumerator Death (int time)
 	{
 		yield return new WaitForSeconds(time);
+		enemy.SetActive(false);
 //		Destroy(enemy);
 	}
 	

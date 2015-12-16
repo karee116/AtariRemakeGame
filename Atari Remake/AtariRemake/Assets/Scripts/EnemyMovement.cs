@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour {
 		player = GameObject.Find ("Player").transform;
 	}
 	
-	void Update ()
+	void OnTriggerEnter2D (Collider2D other)
 	{
 		enemy.position = Vector3.Lerp (enemy.position, player.position, m_Speed * Time.deltaTime);
 	}
