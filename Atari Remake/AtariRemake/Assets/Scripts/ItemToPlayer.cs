@@ -9,6 +9,8 @@ public class ItemToPlayer : MonoBehaviour {
 	[SerializeField] Image itemInUse;
 	[SerializeField] Transform[] urnSpots;
 	
+	public static int win;
+	
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.gameObject.tag == "Item" )
@@ -52,6 +54,18 @@ public class ItemToPlayer : MonoBehaviour {
 		if ((other.gameObject.name == "CompleteUrn") && (inventory.name == "UrnPiece_1"))
 		{	
 			inventory.transform.position = urnSpots[0].position;
+			win += 1;
+			
+		}
+		else if ((other.gameObject.name == "CompleteUrn") && (inventory.name == "UrnPiece_2"))
+		{
+			inventory.transform.position = urnSpots[1].position;
+			win += 1;
+		}
+		else if ((other.gameObject.name == "CompleteUrn") && (inventory.name == "UrnPiece_3"))
+		{
+			inventory.transform.position = urnSpots[2].position;
+			win += 1;
 		}
 		
 	}

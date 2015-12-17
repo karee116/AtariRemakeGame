@@ -30,6 +30,10 @@ public class PlayerHealth : MonoBehaviour {
 				m_dead = true;
 				end.SetTrigger("Done");
 			}
+			else if (ItemToPlayer.win == 3)
+			{
+				end.SetTrigger("Done");
+			}
 		}
 	}
 	
